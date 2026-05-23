@@ -3,145 +3,305 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trivia Interactiva: Higiene y Desinfección IMSS</title>
+    <title>Trivia Interactiva: Higiene y Desinfección — HGZ2A IMSS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --verde: #00664f;
+            --verde-oscuro: #004d3b;
+            --verde-claro: #e6f4f0;
+            --acento: #00a878;
+            --gris: #f4f6f8;
+            --gris-borde: #d0d7de;
+            --texto: #1a2332;
+            --rojo: #c0392b;
+            --rojo-claro: #fdecea;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f4f8;
-            color: #333;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 90vh;
-        }
-        .quiz-container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            max-width: 600px;
-            width: 100%;
-        }
-        h1 {
-            color: #00664f; /* Verde IMSS Institucional */
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 25px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid #ced4da;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-        .btn-primary {
-            background-color: #00664f;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
-            font-weight: bold;
-            margin-top: 15px;
-        }
-        .btn-primary:hover {
-            background-color: #004d3b;
-        }
-        .question {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-        .options {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(145deg, #eaf4f0 0%, #f0f4f8 60%, #e8f0f4 100%);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 24px 16px 40px;
+            color: var(--texto);
         }
-        .option-btn {
-            background-color: #e8ecef;
-            border: 2px solid #ced4da;
-            padding: 12px;
+
+        /* ── HEADER ── */
+        .header {
+            width: 100%;
+            max-width: 640px;
+            background: white;
+            border-radius: 16px 16px 0 0;
+            padding: 20px 28px 16px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            border-bottom: 3px solid var(--verde);
+            box-shadow: 0 2px 12px rgba(0,102,79,.10);
+        }
+
+        .header-logo svg { width: 68px; height: 68px; flex-shrink: 0; }
+
+        .header-info { flex: 1; }
+
+        .header-info .institucion {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--verde);
+        }
+
+        .header-info .unidad {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--texto);
+            line-height: 1.2;
+            margin-top: 2px;
+        }
+
+        .header-info .subtitulo {
+            font-size: 11px;
+            color: #6c757d;
+            margin-top: 3px;
+        }
+
+        /* ── CARD PRINCIPAL ── */
+        .quiz-container {
+            background: white;
+            padding: 32px 28px 28px;
+            max-width: 640px;
+            width: 100%;
+            box-shadow: 0 8px 32px rgba(0,102,79,.10);
+            border-radius: 0 0 16px 16px;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--verde);
+            font-size: 20px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 24px;
+            line-height: 1.3;
+        }
+
+        /* ── FORMULARIO ── */
+        .form-group { margin-bottom: 16px; }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--texto);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 11px 14px;
+            border: 2px solid var(--gris-borde);
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: 'Open Sans', sans-serif;
+            transition: border-color .2s;
+            background: var(--gris);
+            color: var(--texto);
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--verde);
+            background: white;
+        }
+
+        .btn-primary {
+            background: var(--verde);
+            color: white;
+            border: none;
+            padding: 13px 20px;
             border-radius: 8px;
             cursor: pointer;
             font-size: 16px;
+            width: 100%;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 18px;
+            letter-spacing: .5px;
+            transition: background .2s, transform .1s;
+        }
+
+        .btn-primary:hover { background: var(--verde-oscuro); }
+        .btn-primary:active { transform: scale(.98); }
+
+        /* ── BARRA DE PROGRESO ── */
+        .progress-wrap {
+            margin-bottom: 20px;
+        }
+        .progress-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #6c757d;
+            margin-bottom: 6px;
+        }
+        .progress-bar-bg {
+            background: var(--gris);
+            border-radius: 99px;
+            height: 8px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--verde), var(--acento));
+            border-radius: 99px;
+            transition: width .4s ease;
+        }
+
+        /* ── PREGUNTA ── */
+        .question {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 18px;
+            line-height: 1.45;
+            color: var(--texto);
+        }
+
+        .options { display: flex; flex-direction: column; gap: 10px; }
+
+        .option-btn {
+            background: var(--gris);
+            border: 2px solid var(--gris-borde);
+            padding: 13px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+            font-family: 'Open Sans', sans-serif;
             text-align: left;
-            transition: all 0.2s;
+            transition: all .18s;
+            color: var(--texto);
         }
-        .option-btn:hover {
-            background-color: #dee2e6;
-            border-color: #6c757d;
+
+        .option-btn:hover:not(:disabled) {
+            background: var(--verde-claro);
+            border-color: var(--acento);
         }
-        .correct {
-            background-color: #d4edda !important;
-            border-color: #c3e6cb !important;
-            color: #155724;
-        }
-        .incorrect {
-            background-color: #f8d7da !important;
-            border-color: #f5c6cb !important;
-            color: #721c24;
-        }
+
+        .correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724 !important; font-weight: 600; }
+        .incorrect { background: var(--rojo-claro) !important; border-color: var(--rojo) !important; color: var(--rojo) !important; }
+
         .feedback {
-            margin-top: 15px;
-            font-weight: bold;
-            padding: 10px;
-            border-radius: 6px;
+            margin-top: 16px;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px 14px;
+            border-radius: 8px;
             display: none;
+            line-height: 1.5;
         }
+
         .next-btn {
             margin-top: 20px;
-            background-color: #00664f;
+            background: var(--verde);
             color: white;
             border: none;
-            padding: 12px 20px;
-            border-radius: 6px;
+            padding: 12px 24px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
             float: right;
             display: none;
+            transition: background .2s;
         }
-        .results, .loading-screen {
-            text-align: center;
-            font-size: 20px;
-            display: none;
-        }
-        .score {
-            font-size: 32px;
-            font-weight: bold;
-            color: #00664f;
-            margin: 20px 0;
-        }
-        /* Spinner de carga */
+        .next-btn:hover { background: var(--verde-oscuro); }
+
+        /* ── LOADING ── */
+        .loading-screen { text-align: center; display: none; padding: 20px 0; }
+        .loading-screen h3 { font-family: 'Montserrat', sans-serif; color: var(--verde); font-size: 17px; margin-bottom: 16px; }
+
         .spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            width: 36px;
-            height: 36px;
+            border: 4px solid rgba(0,0,0,.08);
+            width: 40px; height: 40px;
             border-radius: 50%;
-            border-left-color: #00664f;
+            border-left-color: var(--verde);
             animation: spin 1s linear infinite;
-            margin: 20px auto;
+            margin: 0 auto;
         }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes spin { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
+
+        /* ── RESULTADOS ── */
+        .results { text-align: center; display: none; padding: 10px 0; }
+        .results h2 { font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 800; color: var(--verde); margin-bottom: 8px; }
+        .results p { color: #555; font-size: 15px; }
+        .score { font-size: 52px; font-weight: 800; font-family: 'Montserrat', sans-serif; color: var(--verde); margin: 16px 0 8px; }
+        .eval-msg { font-size: 15px; color: #333; margin-top: 10px; font-weight: 600; padding: 12px; border-radius: 8px; background: var(--verde-claro); }
+
+        /* ── PIE DE PÁGINA / AGRADECIMIENTOS ── */
+        .footer-thanks {
+            width: 100%;
+            max-width: 640px;
+            margin-top: 18px;
+            background: var(--verde-claro);
+            border-radius: 12px;
+            padding: 16px 24px;
+            text-align: center;
+            border: 1px solid #b2d8ce;
+        }
+        .footer-thanks .gracias-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--verde);
+            margin-bottom: 4px;
+        }
+        .footer-thanks .autor {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--texto);
+        }
+        .footer-thanks .cargo {
+            font-size: 12px;
+            color: #555;
+            margin-top: 2px;
+        }
+        .footer-thanks .unidad-pie {
+            font-size: 11px;
+            color: var(--verde);
+            font-weight: 600;
+            margin-top: 2px;
+        }
     </style>
 </head>
 <body>
 
+<!-- ── ENCABEZADO INSTITUCIONAL ── -->
+<div class="header">
+    <div class="header-logo">
+        <img src="data:image/png;base64,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" alt="Logo IMSS" style="width:80px; height:auto;">
+    </div>
+    <div class="header-info">
+        <div class="institucion">Instituto Mexicano del Seguro Social</div>
+        <div class="unidad">Hospital General de Zona No. 2A</div>
+        <div class="subtitulo">Departamento de Nutrición y Dietética &nbsp;|&nbsp; HGZ2A</div>
+    </div>
+</div>
+
+<!-- ── CONTENIDO PRINCIPAL ── -->
 <div class="quiz-container">
     <h1>Trivia: Control Sanitario y Desinfección</h1>
-    
+
     <!-- PANTALLA 1: REGISTRO -->
     <div id="register-box">
         <form id="register-form" onsubmit="startQuiz(event)">
@@ -168,35 +328,49 @@
     </div>
 
     <!-- PANTALLA 2: JUEGO -->
-    <div id="quiz-box" style="display: none;">
+    <div id="quiz-box" style="display:none;">
+        <div class="progress-wrap">
+            <div class="progress-label" id="progress-label">Pregunta 1 de 5</div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-bar" style="width:0%"></div>
+            </div>
+        </div>
         <div class="question" id="question-text">Aquí va la pregunta</div>
         <div class="options" id="options-box"></div>
         <div class="feedback" id="feedback-text"></div>
-        <button class="next-btn" id="next-button" onclick="nextQuestion()">Siguiente Pregunta</button>
-        <div style="clear: both;"></div>
+        <button class="next-btn" id="next-button" onclick="nextQuestion()">Siguiente →</button>
+        <div style="clear:both;"></div>
     </div>
 
-    <!-- PANTALLA 3: PROCESANDO ENVÍO -->
+    <!-- PANTALLA 3: PROCESANDO -->
     <div id="loading-box" class="loading-screen">
-        <h3>Guardando tus resultados de forma segura...</h3>
+        <h3>Guardando tus resultados de forma segura…</h3>
         <div class="spinner"></div>
     </div>
 
     <!-- PANTALLA 4: RESULTADOS -->
     <div id="results-box" class="results">
         <h2>¡Evaluación Finalizada!</h2>
-        <p>Tu puntuación es:</p>
+        <p>Tu puntuación:</p>
         <div class="score" id="final-score">0 / 0</div>
-        <p id="evaluation-msg"></p>
-        <p style="font-size: 14px; color: #6c757d;">Tus datos han sido registrados en el sistema del departamento.</p>
+        <div class="eval-msg" id="evaluation-msg"></div>
+        <p style="font-size:13px; color:#6c757d; margin-top:16px;">
+            Tus datos han sido registrados en el sistema del Departamento de Nutrición y Dietética — HGZ2A.
+        </p>
     </div>
 </div>
 
+<!-- ── PIE: AGRADECIMIENTOS ── -->
+<div class="footer-thanks">
+    <div class="gracias-label">✦ Agradecimientos ✦</div>
+    <div class="autor">Ing. Sergio de Jesús Cano Pérez</div>
+    <div class="cargo">Jefe de Sección de Producción</div>
+    <div class="unidad-pie">Departamento de Nutrición y Dietética &nbsp;|&nbsp; HGZ2A — IMSS</div>
+</div>
+
 <script>
-    // REEMPLAZA ESTA URL CON LA QUE TE DIO GOOGLE APPS SCRIPT EN LA FASE 1
     const WEB_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx0Lrohl_8skZ3iWz2XgWWstETpo6zYmZ3Z5BDhTEv8UYsBTo4ehEMFMwRtU8n7uoQO6g/exec";
 
-    // Banco de preguntas basado en la normativa
     const quizData = [
         {
             question: "¿Cuál es el desinfectante más eficaz y utilizado en el Departamento de Nutrición y Dietética para áreas y utensilios?",
@@ -214,16 +388,16 @@
             question: "¿Qué sustancia inactiva la acción bactericida del hipoclorito de sodio (cloro)?",
             options: ["El agua fría", "La materia orgánica, grasa y suciedad", "Los recipientes de plástico", "El reposo por 5 minutos"],
             correct: 1,
-            feedback: "¡Correcto! El cloro es inestable y se inactiva rápidamente ante la presencia de materia orgánica y suciedad, por ello se debe lavar antes de desinfectar."
+            feedback: "¡Correcto! El cloro se inactiva rápidamente ante la presencia de materia orgánica, por ello se debe lavar antes de desinfectar."
         },
         {
-            question: "De acuerdo a la clasificación de áreas del hospital, ¿en qué categoría entran el Departamento de Nutricion y Dietetica?",
+            question: "De acuerdo a la clasificación de áreas del hospital, ¿en qué categoría entra el Departamento de Nutrición y Dietética?",
             options: ["Áreas de alto riesgo", "Áreas de riesgo intermedio", "Áreas de bajo riesgo", "Áreas restringidas"],
             correct: 0,
-            feedback: "¡Correcto! El Departamento de Nutricion y Dietetica se clasifican normativamente como áreas de Alto Riesgo."
+            feedback: "¡Correcto! El Departamento de Nutrición y Dietética se clasifica normativamente como Área de Alto Riesgo."
         },
         {
-            question: "Al realizar la limpieza profunda de los utensilios en el Laboratorio de Licuadas, ¿cuánto tiempo deben permanecer sumergidos en la dilución de cloro?",
+            question: "Al realizar la limpieza profunda de utensilios en el Laboratorio de Licuadas, ¿cuánto tiempo deben permanecer sumergidos en la dilución de cloro?",
             options: ["5 minutos", "15 minutos", "1 hora", "30 segundos"],
             correct: 1,
             feedback: "¡Correcto! El protocolo estipula sumergir las ollas y utensilios en una dilución de cloro y dejarlos remojar por 15 minutos."
@@ -232,26 +406,28 @@
 
     let currentQuestionIndex = 0;
     let score = 0;
-    let userData = { nombre: "", matricula: "", turno: "" };
+    let userData = {};
 
-    const registerBox = document.getElementById("register-box");
-    const quizBox = document.getElementById("quiz-box");
-    const loadingBox = document.getElementById("loading-box");
-    const resultsBox = document.getElementById("results-box");
-    
+    const registerBox  = document.getElementById("register-box");
+    const quizBox      = document.getElementById("quiz-box");
+    const loadingBox   = document.getElementById("loading-box");
+    const resultsBox   = document.getElementById("results-box");
     const questionText = document.getElementById("question-text");
-    const optionsBox = document.getElementById("options-box");
+    const optionsBox   = document.getElementById("options-box");
     const feedbackText = document.getElementById("feedback-text");
-    const nextButton = document.getElementById("next-button");
-    const finalScore = document.getElementById("final-score");
-    const evaluationMsg = document.getElementById("evaluation-msg");
+    const nextButton   = document.getElementById("next-button");
+    const finalScore   = document.getElementById("final-score");
+    const evaluationMsg= document.getElementById("evaluation-msg");
+    const progressBar  = document.getElementById("progress-bar");
+    const progressLabel= document.getElementById("progress-label");
 
     function startQuiz(event) {
         event.preventDefault();
-        userData.nombre = document.getElementById("username").value;
-        userData.matricula = document.getElementById("matricula").value;
-        userData.turno = document.getElementById("turno").value;
-
+        userData = {
+            nombre:   document.getElementById("username").value,
+            matricula:document.getElementById("matricula").value,
+            turno:    document.getElementById("turno").value
+        };
         registerBox.style.display = "none";
         quizBox.style.display = "block";
         loadQuestion();
@@ -259,47 +435,45 @@
 
     function loadQuestion() {
         resetState();
-        let currentQuestion = quizData[currentQuestionIndex];
-        questionText.innerText = (currentQuestionIndex + 1) + ". " + currentQuestion.question;
+        const q = quizData[currentQuestionIndex];
+        const pct = ((currentQuestionIndex) / quizData.length) * 100;
+        progressBar.style.width = pct + "%";
+        progressLabel.innerText = "Pregunta " + (currentQuestionIndex + 1) + " de " + quizData.length;
+        questionText.innerText = (currentQuestionIndex + 1) + ". " + q.question;
 
-        currentQuestion.options.forEach((option, index) => {
-            const button = document.createElement("button");
-            button.innerText = option;
-            button.classList.add("option-btn");
-            button.addEventListener("click", () => selectOption(index, button));
-            optionsBox.appendChild(button);
+        q.options.forEach((opt, idx) => {
+            const btn = document.createElement("button");
+            btn.innerText = opt;
+            btn.classList.add("option-btn");
+            btn.addEventListener("click", () => selectOption(idx, btn));
+            optionsBox.appendChild(btn);
         });
     }
 
     function resetState() {
         feedbackText.style.display = "none";
         nextButton.style.display = "none";
-        while (optionsBox.firstChild) {
-            optionsBox.removeChild(optionsBox.firstChild);
-        }
+        while (optionsBox.firstChild) optionsBox.removeChild(optionsBox.firstChild);
     }
 
     function selectOption(selectedIndex, clickedButton) {
-        let currentQuestion = quizData[currentQuestionIndex];
-        let allButtons = optionsBox.getElementsByClassName("option-btn");
+        const q = quizData[currentQuestionIndex];
+        const allButtons = optionsBox.getElementsByClassName("option-btn");
 
-        for (let btn of allButtons) {
-            btn.disabled = true;
-        }
+        for (let btn of allButtons) btn.disabled = true;
 
-        if (selectedIndex === currentQuestion.correct) {
+        if (selectedIndex === q.correct) {
             clickedButton.classList.add("correct");
             score++;
         } else {
             clickedButton.classList.add("incorrect");
-            allButtons[currentQuestion.correct].classList.add("correct");
+            allButtons[q.correct].classList.add("correct");
         }
 
-        feedbackText.innerText = currentQuestion.feedback;
+        feedbackText.innerText = q.feedback;
         feedbackText.style.display = "block";
-        feedbackText.style.backgroundColor = selectedIndex === currentQuestion.correct ? "#d4edda" : "#f8d7da";
-        feedbackText.style.color = selectedIndex === currentQuestion.correct ? "#155724" : "#721c24";
-        
+        feedbackText.style.backgroundColor = selectedIndex === q.correct ? "#d4edda" : "#fdecea";
+        feedbackText.style.color = selectedIndex === q.correct ? "#155724" : "#721c24";
         nextButton.style.display = "block";
     }
 
@@ -317,42 +491,37 @@
         loadingBox.style.display = "block";
 
         const payload = {
-            nombre: userData.nombre,
+            nombre:    userData.nombre,
             matricula: userData.matricula,
-            turno: userData.turno,
-            puntaje: score + " / " + quizData.length
+            turno:     userData.turno,
+            puntaje:   score + " / " + quizData.length,
+            unidad:    "HGZ2A"
         };
 
-        // Envío asíncrono a Google Sheets sin recargar la página
         fetch(WEB_SCRIPT_URL, {
             method: "POST",
-            mode: "no-cors", // Evita problemas de CORS comunes en despliegues estáticos
+            mode: "no-cors",
             cache: "no-cache",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
         })
-        .then(() => {
-            showResults();
-        })
-        .catch(err => {
-            console.error("Error al enviar:", err);
-            // De igual forma mostramos resultados al usuario por si falla la red, no arruinar su experiencia
-            showResults(); 
-        });
+        .then(() => showResults())
+        .catch(err => { console.error("Error al enviar:", err); showResults(); });
     }
 
     function showResults() {
         loadingBox.style.display = "none";
         resultsBox.style.display = "block";
+        progressBar.style.width = "100%";
         finalScore.innerText = score + " / " + quizData.length;
 
-        let porcentaje = (score / quizData.length) * 100;
-        if (porcentaje === 100) {
-            evaluationMsg.innerText = "¡Excelente! Conoces perfectamente las Normas de Calidad e Higiene.";
-        } else if (porcentaje >= 70) {
-            evaluationMsg.innerText = "¡Buen trabajo! Buen manejo técnico, repasa los tiempos de exposición.";
+        const pct = (score / quizData.length) * 100;
+        if (pct === 100) {
+            evaluationMsg.innerText = "🏆 ¡Excelente! Conoces perfectamente las Normas de Calidad e Higiene del HGZ2A.";
+        } else if (pct >= 70) {
+            evaluationMsg.innerText = "👍 ¡Buen trabajo! Sólido manejo técnico. Repasa los tiempos de exposición y concentraciones.";
         } else {
-            evaluationMsg.innerText = "Es necesario volver a repasar el Lineamiento de Diluciones Desinfectantes.";
+            evaluationMsg.innerText = "📋 Es necesario repasar el Lineamiento de Diluciones Desinfectantes del Departamento.";
         }
     }
 </script>
